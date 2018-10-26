@@ -99,7 +99,7 @@ class Picture(QtWidgets.QWidget):
             logTool.log(msg, log_type.popup, self)
             return
 
-        # 获取目录下的图片格式(jpg, png)的文件名
+        # 获取目录下所有文件的文件名
         file_name_list = os.listdir(putin)
         logTool.log(repr(file_name_list), log_type.both)
         logTool.log(putout, log_type.both)
