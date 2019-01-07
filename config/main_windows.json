@@ -1,0 +1,12 @@
+
+{
+    "ps":"这是主窗口的配置",
+    "windows_name":"工具箱",
+    "windows_width":400,
+    "windows_height":300,
+    
+
+    "button_quick_key_name":"快捷键",
+    "button_picture_name":"图片处理",
+    "a":1
+}
