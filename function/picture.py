@@ -20,7 +20,8 @@ class Picture(QtWidgets.QWidget):
         self.setWindowModality(QtCore.Qt.WindowModal)
 
         # 界面设置
-        cfg = config_tool.cfg_map["picture_windows"]
+        self.cfg = config_tool.cfg_map["picture_windows"]
+        cfg = self.cfg
         self.setWindowTitle(cfg["windows_name"])
         self.resize(cfg["windows_width"], cfg["windows_height"])
 
@@ -108,7 +109,7 @@ class Picture(QtWidgets.QWidget):
 
         # 查找符合的文件
         name_list = []
-        cfg = config_tool.cfg_map["picture_windows"]
+        cfg = self.cfg
         suffix_list = cfg["suffix_list"]
         # 遍历文件名
         for name in file_name_list:

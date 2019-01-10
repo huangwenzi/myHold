@@ -16,4 +16,4 @@ try:
     sys.exit(ret)
 except :
     pass
-    #print("error:" + str(ret))
+    print("error:" + str(ret))

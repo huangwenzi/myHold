@@ -32,8 +32,9 @@ class Log_tool():
         elif logType == enums.log_type.both:
             print(msg)
             self.write_local(msg)
-        elif logType == enums.log_type.popup and parent:
-            self.popup(parent, msg)
+        # 弹窗功能暂时不使用
+        # elif logType == enums.log_type.popup and parent:
+        #     self.popup(parent, msg)
 
     # 写到本地
     # ps : 这里有坑，如果不调用close，数据不会马上保存到磁盘，而是在内存中等待处理器有空的时候再写入

@@ -5,5 +5,14 @@
     "windows_width":300,
     "windows_height":250,
     "row_num":3,
+
+    "ps_1":"各个键的作用",
+    "auxiliary_key":"0",
+    "open_flag_key":".",
+    "screenshot_key":"+",
+    "exit_key":"-",
+
+    "ps_2":"保存截图的地址",
+    "screenshot_path":"./screenshot",
     "a":1
 }

@@ -17,5 +17,9 @@ class Time_tool():
     # 获取今天的log名称
     def get_log_name(self):
         return time.strftime("./logs/out_log_%Y-%m-%d.log", time.localtime())
+    
+    # 获取图片名称
+    def get_photo_name(self):
+        return time.strftime("%Y-%m-%d_%H-%M-%S.png", time.localtime())
 
 time_tool = Time_tool()

@@ -1,14 +1,12 @@
 
-
-
 # 按下的键的返回定义
-class KeysRet():
-    # 是功能 键
-    isFun = 0
-    # 不是功能键
-    noFun = 1
+class Keys_ret():
+    # 是功能键
+    is_fun = 0
+    # 是普通键
+    is_ordinary = 1
     # 退出程序
-    isExit = 2
+    is_exit = 2
 
 
 # log输出的类型
@@ -28,6 +26,6 @@ class Enums():
     log_type = None
     # 初始化全部枚举
     def __init__(self):
-        self.keysRet = KeysRet()    # 按下的键的返回定义
+        self.keys_ret = Keys_ret()    # 按下的键的返回定义
         self.log_type = Log_type()    # log输出的类型
 enums = Enums()
