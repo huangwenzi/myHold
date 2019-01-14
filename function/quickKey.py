@@ -21,7 +21,7 @@ quick_keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 # 数据管理类
 class Data_mgr():
     # 是否开启快捷键功能
-    openFlag = True
+    openFlag = False
     # 记录按下的键，只是按下，没有弹起
     keyDown = []
     # 保存记录快捷键对应坐标的字典{"number" : [x,y],...}
@@ -180,6 +180,8 @@ def is_ordinary(key):
         return
 
     # 执行快捷键操作
+    if ~hasattr(key, "char"):
+        return
     char = key.char
     # 鼠标移动到保存的位置
     if char in quick_keys:
