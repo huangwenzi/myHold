@@ -26,6 +26,7 @@ class Data_mgr():
     keyDown = []
     # 保存记录快捷键对应坐标的字典{"number" : [x,y],...}
     position = {}
+# 实例化一个对象给下面的使用
 data_mgr = Data_mgr()
 
 # 快捷键的类
@@ -38,7 +39,7 @@ class Quick_key(QtWidgets.QWidget):
         super(Quick_key, self).__init__(parent)
         # 设置模态窗口
         self.setWindowFlags(QtCore.Qt.Dialog)
-        self.setWindowModality(QtCore.Qt.WindowModal)
+        # self.setWindowModality(QtCore.Qt.WindowModal)
 
         # 界面设置
         self.cfg = config_tool.cfg_map["quickkey_windows"]
@@ -68,12 +69,10 @@ class Quick_key(QtWidgets.QWidget):
         self.setLayout(self.layout)
 
         # 按键的监听需要分一个线程去执行
-        # 创建两个线程
         try:
             _thread.start_new_thread(self.key_event)
         except:
             log_tool.log("quickKey, __init__, Error: 无法启动线程, key_event")
-            log_tool.log("quickKey, __init__, Error: 无法启动线程, key_event", enums.log_type.popup)
 
 
     # 更新界面数据
@@ -198,7 +197,6 @@ def is_ordinary(key):
 # data_mgr : 数据管理器对象
 # key : 按下的key值
 def is_fun(key):
-    print("is_fun")
     #　这里的配置必须重新拿一下
     cfg = config_tool.cfg_map["quickkey_windows"]
     char = key.char

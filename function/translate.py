@@ -8,6 +8,7 @@ from openpyxl import load_workbook  # 读取时导入这个
 import re
 import json
 import pytoml as toml
+import _thread
 # 项目库
 from tools.log_tool import log_tool
 from tools.config_tool import config_tool
@@ -15,15 +16,17 @@ from config.enums import enums
 
 # 翻译的类
 class Translate(QtWidgets.QWidget):
+    # 翻译数据
     translate_data = {}
-    pass
-    # 初始化图片处理模块
+    # 加载翻译的锁
+    load_flag = False
+    
     # parent : 父窗口
     def __init__(self, parent):
         super(Translate, self).__init__(parent)
         # 设置模态窗口
         self.setWindowFlags(QtCore.Qt.Dialog)
-        self.setWindowModality(QtCore.Qt.WindowModal)
+        # self.setWindowModality(QtCore.Qt.WindowModal)
 
         # 界面设置
         self.cfg = config_tool.cfg_map["translate_windows"]
@@ -45,6 +48,7 @@ class Translate(QtWidgets.QWidget):
         # excel待转化文件
         self.lineEdit_excel = QtWidgets.QLineEdit(self)
         self.lineEdit_excel.resize(150, 30)
+        self.lineEdit_excel.setText("1.xlsx")
         # 翻译toml文件
         self.lineEdit_toml = QtWidgets.QLineEdit(self)
         self.lineEdit_toml.resize(150, 30)
@@ -87,8 +91,62 @@ class Translate(QtWidgets.QWidget):
         self.button_find.clicked.connect(self.click_find)
 
         
-    # 点击excel转化toml按钮
+    # 点击excel转化toml按钮(这部分可以用线程去运行，不妨碍其他功能使用)
     def click_excel_to_toml(self):
+        # 检查锁
+        if self.load_flag:
+            log_tool.log("quickKey, click_find, 正在加载翻译")
+            return
+        try:
+            _thread.start_new_thread(self.load_excel)
+        except:
+            log_tool.log("quickKey, click_excel_to_toml, Error: 无法启动线程, load_excel")
+
+        
+
+    # 点击查找翻译按钮
+    def click_find(self):
+        # 检查锁
+        if self.load_flag:
+            log_tool.log("quickKey, click_find, 正在加载翻译")
+            return
+
+        # 先清除显示
+        self.textEdit_find.clear()
+
+        # 获取文本
+        find_str = self.lineEdit_find.text()
+
+        # # 寻找对应的数据
+        # if find_str not in self.translate_data:
+        #     self.textEdit_find.setPlainText("翻译不存在")
+        #     return
+        # # 输出对应的翻译
+        # tmp_data = self.translate_data[find_str]
+        # key_arr = tmp_data.keys()
+        # for tmp_key in key_arr:
+        #     self.textEdit_find.insertPlainText(tmp_key + "\n")
+        #     self.textEdit_find.insertPlainText(tmp_data[tmp_key] + "\n")
+
+        # 是否找到的flag
+        find_flag = False
+        # 遍历查找包含的
+        for tmp_key in self.translate_data:
+            if tmp_key.find(find_str) != -1:
+                find_flag = True
+                tmp_data = self.translate_data[tmp_key]
+                # 暂时只要韩文翻译
+                self.textEdit_find.insertPlainText(tmp_data["翻译内容"] + "\n")
+                self.textEdit_find.insertPlainText(tmp_data["韩文翻译"] + "\n")
+
+        if not find_flag:
+            self.textEdit_find.setPlainText("翻译不存在")
+
+    # 加载excel的翻译
+    def load_excel(self):
+        # 加锁
+        self.load_flag = True
+
         # 获取文本
         excel_name = self.lineEdit_excel.text()
 
@@ -119,22 +177,7 @@ class Translate(QtWidgets.QWidget):
         
         self.translate_data = str_data
 
-    # 点击查找翻译按钮
-    def click_find(self):
-        # 先清除显示
-        self.textEdit_find.clear()
+        log_tool.log("加载excel翻译完毕", enums.log_type.both, self)
 
-        # 获取文本
-        find_str = self.lineEdit_find.text()
-
-        # 寻找对应的数据
-        if find_str not in self.translate_data:
-            self.textEdit_find.setPlainText("翻译不存在")
-            return
-
-        # 输出对应的翻译
-        tmp_data = self.translate_data[find_str]
-        key_arr = tmp_data.keys()
-        for tmp_key in key_arr:
-            self.textEdit_find.insertPlainText(tmp_key + "\n")
-            self.textEdit_find.insertPlainText(tmp_data[tmp_key] + "\n")
+        # 解除锁
+        self.load_flag = False

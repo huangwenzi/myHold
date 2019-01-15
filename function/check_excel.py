@@ -11,13 +11,12 @@ from config.enums import enums
 # 处理excel的类
 class Check_excel(QtWidgets.QWidget):
 
-    # 初始化图片处理模块
     # parent : 父窗口
     def __init__(self, parent):
         super(Check_excel, self).__init__(parent)
         # 设置模态窗口
         self.setWindowFlags(QtCore.Qt.Dialog)
-        self.setWindowModality(QtCore.Qt.WindowModal)
+        # self.setWindowModality(QtCore.Qt.WindowModal)
 
         # 界面设置
         self.cfg = config_tool.cfg_map["check_excel_windows"]

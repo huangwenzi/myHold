@@ -11,13 +11,12 @@ from config.enums import enums
 # 这个是用来处理图片的类
 class Picture(QtWidgets.QWidget):
 
-    # 初始化图片处理模块
     # parent : 父窗口
     def __init__(self, parent):
         super(Picture, self).__init__(parent)
         # 设置模态窗口
         self.setWindowFlags(QtCore.Qt.Dialog)
-        self.setWindowModality(QtCore.Qt.WindowModal)
+        # self.setWindowModality(QtCore.Qt.WindowModal)
 
         # 界面设置
         self.cfg = config_tool.cfg_map["picture_windows"]
