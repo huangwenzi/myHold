@@ -1,0 +1,10 @@
+
+{
+    "ps":"这是图片查看窗口的配置",
+    "windows_name":"图片处理",
+    "windows_width":300,
+    "windows_height":250,
+    
+    "suffix_list":[".jpg",".png"],
+    "a":1
+}

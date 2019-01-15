@@ -8,10 +8,11 @@ from function.quickKey import Quick_key
 from function.picture import Picture
 from function.check_excel import Check_excel
 from function.translate import Translate
+from function.setting import Setting
 
 
 # MainWidget继承于QtGui.QWidget类
-class MainWidget(QtWidgets.QWidget): 
+class MainWidget(QtWidgets.QMainWindow): 
 
     # 需要调用两个构造方法
     def __init__(self):
@@ -34,8 +35,28 @@ class MainWidget(QtWidgets.QWidget):
         self.check_excel = Check_excel(self)
         # 翻译
         self.translate = Translate(self)
+        # 菜单栏
+        # 设置
+        self.setting = Setting(self)
+
 
         # 初始化界面部件
+        # 设置菜单栏
+        # mainWindows自带有菜单栏，不需要再new
+        # self.menuBar_menu = QtWidgets.QMenuBar(self)
+        # self.menuBar_menu.setGeometry(0,0,self.width(),23)
+        # 设置菜单键
+        # 设置动作
+        action_config = QtWidgets.QAction("模块配置", self)
+        action_config.setShortcut("Ctrl+O")
+        # 设置菜单选项
+        menu_setting = QtWidgets.QMenu("设置（&E）")
+        menu_setting.addAction(action_config)
+        # 不需要快捷键的动作,做个对比,会返回这个动作的引用
+        menu_setting.addAction("无作用")
+        # 添加设置到菜单栏
+        self.menuBar().addMenu(menu_setting)
+
         # 按钮类
         self.button_quickKey = QtWidgets.QPushButton(self)
         self.button_quickKey.setText("快捷键")
@@ -52,13 +73,20 @@ class MainWidget(QtWidgets.QWidget):
         self.layout.addWidget(self.button_picture, 0, 1, 1, 1)
         self.layout.addWidget(self.button_check_excel, 1, 0, 1, 1)
         self.layout.addWidget(self.button_translate, 1, 1, 1, 1)
-        self.setLayout(self.layout)
+        # 下面几句话是重点，mainWindows本身就有一个centralWidget，布局需要在他上面，否者会全部挤在一起, 布局实效
+        a = QtWidgets.QWidget(self)
+        self.setCentralWidget(a)
+        self.centralWidget().setLayout(self.layout)
 
         # 设置连接信号
+        # 按钮的信号
         self.button_quickKey.clicked.connect(self.click_quickKey)
         self.button_picture.clicked.connect(self.click_picture)
         self.button_check_excel.clicked.connect(self.click_check_excel)
         self.button_translate.clicked.connect(self.click_translate)
+        # 菜单栏的信号
+        action_config.triggered.connect(self.click_setting)
+
 
         self.show()
         log_tool.log("初始化软件完毕")
@@ -80,6 +108,11 @@ class MainWidget(QtWidgets.QWidget):
     # 处理excel的点击
     def click_translate(self):
         self.translate.show()
+
+    # 菜单栏的点击信号处理
+    # 快捷键的点击
+    def click_setting(self):
+        self.setting.show()
 
 
         

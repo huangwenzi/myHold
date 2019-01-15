@@ -14,6 +14,11 @@ from tools.config_tool import config_tool
 from config.enums import enums
 
 # 查看图片的工具
+class Photo_see():
+    pass
+
+    def __init__(self):
+        pass
 
 
 

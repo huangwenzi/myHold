@@ -73,16 +73,16 @@ class Translate(QtWidgets.QWidget):
 
         # 布局管理器
         self.layout = QtWidgets.QGridLayout(self)
-        self.layout.addWidget(self.lable_excel, 0, 0, 1, 1)
-        self.layout.addWidget(self.lineEdit_excel, 0, 1, 1, 1)
-        self.layout.addWidget(self.lable_toml, 1, 0, 1, 1)
-        self.layout.addWidget(self.lineEdit_toml, 1, 1, 1, 1)
-        self.layout.addWidget(self.button_excel_to_toml, 2, 0, 1, 1)
-        self.layout.addWidget(self.button_load_toml, 2, 1, 1, 1)
-        self.layout.addWidget(self.lable_find, 3, 0, 1, 1)
-        self.layout.addWidget(self.lineEdit_find, 3, 1, 1, 2)
-        self.layout.addWidget(self.button_find, 4, 0, 1, 1)
-        self.layout.addWidget(self.textEdit_find, 5, 0, 5, 2)
+        self.layout.addWidget(self.lable_excel, 1, 0, 1, 1)
+        self.layout.addWidget(self.lineEdit_excel, 1, 1, 1, 1)
+        self.layout.addWidget(self.button_excel_to_toml, 1, 2, 1, 1)
+        self.layout.addWidget(self.lable_toml, 2, 0, 1, 1)
+        self.layout.addWidget(self.lineEdit_toml, 2, 1, 1, 1)
+        self.layout.addWidget(self.button_load_toml, 2, 2, 1, 1)
+        self.layout.addWidget(self.lable_find, 4, 0, 1, 1)
+        self.layout.addWidget(self.lineEdit_find, 4, 1, 1, 2)
+        self.layout.addWidget(self.button_find, 4, 2, 1, 1)
+        self.layout.addWidget(self.textEdit_find, 5, 0, 5, 3)
 
         self.setLayout(self.layout)
 
@@ -113,20 +113,8 @@ class Translate(QtWidgets.QWidget):
 
         # 先清除显示
         self.textEdit_find.clear()
-
         # 获取文本
         find_str = self.lineEdit_find.text()
-
-        # # 寻找对应的数据
-        # if find_str not in self.translate_data:
-        #     self.textEdit_find.setPlainText("翻译不存在")
-        #     return
-        # # 输出对应的翻译
-        # tmp_data = self.translate_data[find_str]
-        # key_arr = tmp_data.keys()
-        # for tmp_key in key_arr:
-        #     self.textEdit_find.insertPlainText(tmp_key + "\n")
-        #     self.textEdit_find.insertPlainText(tmp_data[tmp_key] + "\n")
 
         # 是否找到的flag
         find_flag = False
