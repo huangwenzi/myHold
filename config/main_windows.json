@@ -1,7 +1,1 @@
-
-{
-    "ps":"这是主窗口的配置",
-    "windows_name":"工具箱",
-    "windows_width":400,
-    "windows_height":300
-}
+{"ps": "这是主窗口的配置", "windows_name": "工具箱", "windows_width": 400, "windows_height": 300}

@@ -1,11 +1,1 @@
-
-{
-    "ps":"这是设置窗口的配置",
-    "windows_name":"设置",
-    "windows_width":700,
-    "windows_height":500,
-    "listWidget_width":100,
-    "listWidget_height":400,
-    "stackedWidget_width":400,
-    "stackedWidget_height":400
-}
+{"ps": "这是设置窗口的配置", "windows_name": "设置", "windows_width": 700, "windows_height": 500, "listWidget_width": 100, "listWidget_height": 400, "stackedWidget_width": 400, "stackedWidget_height": 400}
