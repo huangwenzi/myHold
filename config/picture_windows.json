@@ -1,1 +1,9 @@
-{"ps": "这是图片处理窗口的配置", "windows_name": "图片处理", "windows_width": 700, "windows_height": 500, "suffix_list": [".jpg", ".png"]}
+
+{
+    "ps":"这是图片处理窗口的配置",
+    "windows_name":"图片处理",
+    "windows_width":700,
+    "windows_height":500,
+    
+    "suffix_list":[".jpg",".png"]
+}

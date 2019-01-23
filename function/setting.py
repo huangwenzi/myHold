@@ -113,7 +113,26 @@ class Setting(QtWidgets.QWidget):
 
     # 点击恢复初始
     def click_reset(self):
-        pass
+        # 先查找备份的恢复数据是否还在
+        file_arr = config_tool.file_arr
+        reset_file = []
+        for file_name in file_arr:
+            # 解析配置名
+            begin = file_name.rfind("/")
+            end = file_name.rfind(".json")
+            cfg_name = file_name[begin + 1: end]
+            cfg_name = "config/initCfg/" + cfg_name + ".json"
+            if file_tool.check_path(cfg_name) == False:
+                log_tool.log("setting, click_reset, check_path %s not exists"%(cfg_name))
+                return 
+            reset_file.append(cfg_name)
+
+        # 拷贝文件过去
+        for file_name in reset_file:
+            old_file = file_name.replace("/initCfg","")
+            file_tool.copy_file(file_name, old_file)
+
+        log_tool.log("setting, click_reset, success")
 
 
 # 设置窗口

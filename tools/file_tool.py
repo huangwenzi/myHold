@@ -1,5 +1,6 @@
 # 系统库文件
 import os
+import shutil
 # 自己的库文件
 # 项目文件
 
@@ -82,6 +83,12 @@ class File_tool():
             os.remove(tmp_file)
             
         return True
+
+    # 拷贝文件
+    # new_file : 要拷贝的文件， 必须存在
+    # old_file : 新的文件，可以不存在
+    def copy_file(self, new_file, old_file):
+        shutil.copyfile(new_file, old_file)
 
 # 实例化出工具对象
 file_tool = File_tool()
