@@ -10,6 +10,8 @@ from config.enums import enums
 
 # 设置的类
 class Setting(QtWidgets.QWidget):
+    # 设置窗口对象数组
+    set_widget_arr = []
     # 保存设置窗口，在堆栈里的索引id
     listWidget_arr = {}
     # 是否有修改过配置
@@ -47,7 +49,9 @@ class Setting(QtWidgets.QWidget):
         for cfg_name in config_tool.cfg_map:
             tmp_cfg = config_tool.cfg_map[cfg_name]
             listWidget = self.listWidget_arr[tmp_cfg["windows_name"]]
-            listWidget["index"] = self.stackedWidget_setting.addWidget(Set_window(tmp_cfg, self))
+            new_set_widget = Set_window(tmp_cfg, self)
+            self.set_widget_arr.append(new_set_widget)
+            listWidget["index"] = self.stackedWidget_setting.addWidget(new_set_widget)
         self.stackedWidget_setting.setCurrentIndex(0)
 
         # 按钮
@@ -154,7 +158,10 @@ class Set_window(QtWidgets.QLabel):
         self.layout = QtWidgets.QGridLayout(self)
         index = 0
         for tmp_set in cfg:
+            tmp_obj = Set_value()
             Label_tmp = QtWidgets.QLabel(tmp_set)
+            # 输入栏需要特殊处理
+            value_type = type(cfg[tmp_set])
             lineEdit_tmp = QtWidgets.QLineEdit(str(cfg[tmp_set]))
             self.layout.addWidget(Label_tmp, index, 0, 1, 1)
             self.layout.addWidget(lineEdit_tmp, index, 1, 1, 1)
@@ -163,3 +170,11 @@ class Set_window(QtWidgets.QLabel):
             index += 1
 
         self.setLayout(self.layout)
+
+
+# 配置字段类
+# 保存对应的label和lineEdit
+class Set_value(object):
+    key_label = None        # label
+    value_lineEdit = None   # lineEdit
+    value_type = None       # 数据的对应类型
