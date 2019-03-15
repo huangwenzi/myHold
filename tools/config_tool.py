@@ -2,7 +2,7 @@
 import json
 import os
 # 项目库
-from config.enums import enums
+from configs.enums import enums
 from tools.log_tool import log_tool
 
 # 这个是加载处理各配置文件的工具
@@ -13,12 +13,12 @@ class Config_tool():
 
     # 初始化加载各个配置文件
     def __init__(self):
-        self.file_arr = ["config/main_windows.json",         # 主窗口配置
-                         "config/picture_windows.json",      # 图片处理配置
-                         "config/quickkey_windows.json",     # 快捷键配置
-                         "config/check_excel_windows.json",  # excel处理配置
-                         "config/translate_windows.json",    # 翻译配置
-                         "config/setting_windows.json"]      # 设置配置
+        self.file_arr = ["configs/main_windows.json",         # 主窗口配置
+                         "configs/picture_windows.json",      # 图片处理配置
+                         "configs/quickkey_windows.json",     # 快捷键配置
+                         "configs/check_excel_windows.json",  # excel处理配置
+                         "configs/translate_windows.json",    # 翻译配置
+                         "configs/setting_windows.json"]      # 设置配置
 
         log_tool.log("load all config")
         for file_name in self.file_arr:

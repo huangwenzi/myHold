@@ -2,7 +2,7 @@
 import time
 from PySide2 import QtWidgets
 # 项目库
-from config.enums import enums
+from configs.enums import enums
 from tools.time_tool import time_tool
 
 # 打印日志的工具

@@ -6,7 +6,7 @@ import json
 from tools.log_tool import log_tool
 from tools.config_tool import config_tool
 from tools.file_tool import file_tool
-from config.enums import enums
+from configs.enums import enums
 
 # 设置的类
 class Setting(QtWidgets.QWidget):

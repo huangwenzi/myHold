@@ -6,7 +6,7 @@ from PySide2 import QtCore
 # 项目库
 from tools.log_tool import log_tool
 from tools.config_tool import config_tool
-from config.enums import enums
+from configs.enums import enums
 
 # 这个是用来处理图片的类
 class Picture(QtWidgets.QWidget):

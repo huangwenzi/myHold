@@ -9,7 +9,7 @@ from pynput.mouse import Button, Controller
 mouse = Controller()
 import pyautogui
 # 项目库
-from config.enums import enums
+from configs.enums import enums
 from tools.log_tool import log_tool
 from tools.config_tool import config_tool
 from tools.time_tool import time_tool
